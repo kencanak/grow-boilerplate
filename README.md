@@ -1,2 +1,2 @@
-# grow-scaffold
+# grow-boilerplate
 Grow basic boilerplate
