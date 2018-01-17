@@ -1,5 +1,14 @@
 {
   "name": "grow-boilerplate",
+  "description": "basic grow boilerplate",
+  "keywords": [
+    "grow.io",
+    "grow",
+    "grow.io boilerplate",
+    "grow.io scaffold",
+    "grow boilerplate",
+    "grow scaffold"
+  ],
   "private": true,
   "dependencies": {
     "sw-precache": "^5.1.0"
