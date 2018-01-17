@@ -1,0 +1,17 @@
+{% set toast_copy = g.doc('/content/shell.yaml').toast %}
+
+<aside class="sw-toast">
+  <div class="sw-toast__message sw-toast__message__offline">
+    <span>{{toast_copy.offline}}</span>
+  </div>
+  <div class="sw-toast__message sw-toast__message__online">
+    <span>{{toast_copy.online}}</span>
+  </div>
+  <div class="sw-toast__message sw-toast__message__installed">
+    <span>{{toast_copy.ready}}</span>
+  </div>
+  <div class="sw-toast__message sw-toast__message__updated">
+    <span>{{toast_copy.updated}}</span>
+    <a href="#" class="sw-toast__message__reload"><span>{{toast_copy.updated_link}}</span></a>
+  </div>
+</aside>

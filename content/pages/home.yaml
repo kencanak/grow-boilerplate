@@ -1,0 +1,9 @@
+$view: /views/pages/home.html
+$title: Home
+$path: /{root}/
+$order: 1
+description: A basic Grow boilerplate
+
+composite_files:
+- home
+

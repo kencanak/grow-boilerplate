@@ -1,0 +1,51 @@
+grow_version: ">=0.2.5"
+root: ""
+
+title: "Grow basic boiler plate"
+
+home: /content/pages/home.yaml
+
+image_path: /source/images/
+locale_path_placeholder: (locale_path)
+
+localization:
+  default_locale: en
+
+meta:
+  google_analytics_id: ""
+  google_site_verification: ""
+  image_path: /source/images/
+  favicon_path: /source/images/favicon.png
+  social:
+    twitter: example
+    facebook: example
+
+preprocessors:
+- kind: gulp
+  build_task: grow-build
+
+preprocessors:
+- kind: gulp
+  build_task: grow-build
+
+static_dirs:
+- static_dir: /source/images/
+  serve_at: /{root}images/
+  fingerprinted: true
+- static_dir: /source/svgs/
+  serve_at: /{root}svgs/
+  fingerprinted: true
+- static_dir: /source/fonts/
+  serve_at: /{root}fonts/
+- static_dir: /source/service-worker/
+  serve_at: "/{root}"
+  fingerprinted: false
+- static_dir: /dist/css/
+  serve_at: /{root}css/
+  fingerprinted: true
+- static_dir: /dist/js/
+  serve_at: /{root}js/
+  fingerprinted: true
+
+sitemap:
+  enabled: true

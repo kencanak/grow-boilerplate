@@ -1,0 +1,78 @@
+.sw-toast {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  z-index: index($z-elements, toast);
+
+  display: none;
+
+  padding: rem(18) rem(30) rem(20);
+
+  font-size: rem(16);
+
+  color: $color-white;
+
+  text-transform: none;
+
+  background-color: rgba(0, 0, 0, .8);
+
+  opacity: 0;
+
+  transform: translate3d(0, 10%, 0);
+
+  animation-delay: .3s;
+  animation-duration: 8s;
+  animation-timing-function: ease;
+
+  a {
+    padding-left: rem(40);
+
+    color: $color-white;
+
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &__visible {
+    display: block;
+
+    animation-name: sw-fade-in;
+  }
+}
+
+
+.sw-toast__message {
+  display: none;
+
+  &__visible {
+    display: block;
+  }
+}
+
+
+@keyframes sw-fade-in {
+  0% {
+    opacity: 0;
+
+    transform: translate3d(0, 10%, 0);
+  }
+
+  8% { // 8% of 5s = .4s.
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+  }
+
+  92% {
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: translate3d(0, 10%, 0);
+  }
+}

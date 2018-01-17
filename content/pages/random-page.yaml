@@ -1,0 +1,9 @@
+$view: /views/pages/random-page.html
+$title: Random Page
+$path: /{root}/random-page/
+$order: 2
+description: A basic Grow boilerplate
+
+composite_files:
+- home
+

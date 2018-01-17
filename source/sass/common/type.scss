@@ -1,0 +1,110 @@
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-weight: $f-weight-regular;
+
+  line-height: 1.375;
+}
+
+h1,
+h2 {
+  margin: rem(10) 0;
+}
+
+h3,
+p {
+  margin: rem(5) 0;
+}
+
+h1 {
+  font-size: $h1;
+
+  @media #{$mq-tablet} {
+    font-size: $h1-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $h1-desktop;
+  }
+}
+
+h2 {
+  font-size: $h2;
+
+  @media #{$mq-tablet} {
+    font-size: $h2-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $h2-desktop;
+  }
+}
+
+h3 {
+  font-size: $h3;
+
+  @media #{$mq-tablet} {
+    font-size: $h3-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $h3-desktop;
+  }
+}
+
+h4 {
+  font-size: $h4;
+
+  @media #{$mq-tablet} {
+    font-size: $h4-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $h4-desktop;
+  }
+}
+
+.f-body {
+  font-size: $f-body;
+
+  @media #{$mq-tablet} {
+    font-size: $f-body-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $f-body-desktop;
+  }
+}
+
+.f-body2 {
+  font-size: $f-body2;
+
+  @media #{$mq-tablet} {
+    font-size: $f-body2-tablet;
+  }
+
+  @media #{$mq-desktop} {
+    font-size: $f-body2-desktop;
+  }
+}
+
+.f-footnote {
+  font-size: $f-footnote;
+}
+
+.f-thin {
+  font-weight: $f-weight-thin;
+}
+
+.f-regular {
+  font-weight: $f-weight-regular;
+}
+
+.f-bold {
+  font-weight: $f-weight-bold;
+}

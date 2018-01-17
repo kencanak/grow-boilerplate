@@ -1,0 +1,46 @@
+.back-to-top {
+  position: fixed;
+
+  bottom: rem(30);
+  right: rem(30);
+
+  z-index: index($z-elements, back-to-top);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: rem(40);
+  height: rem(40);
+
+  border-radius: rem(100);
+
+  border: 0;
+
+  opacity: 1;
+
+  cursor: pointer;
+
+  background-color: $color-primary;
+
+  transition: opacity $transition-duration-slow $timing-function-ease-out-cubic;
+
+  &:focus {
+    outline: none;
+
+    background-color: $color-primary-light;
+  }
+
+  svg {
+    width: auto;
+    height: rem(10);
+
+    pointer-events: none;
+  }
+
+  &[aria-hidden] {
+    opacity: 0;
+    cursor: default;
+  }
+}

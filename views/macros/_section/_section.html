@@ -1,0 +1,14 @@
+{# Create a section
+  - type: {String} - The type of section, see the list above of types.
+  - class {String} - (Optional) Any classes to be added to the section.
+#}
+
+{% macro create_section(doc, type, class) %}
+<section class="section section__{{type}} {% if class %}{{class}}{% endif %}">
+
+  <div class="section__content">
+    {{ caller() }}
+  </div>
+
+</section>
+{% endmacro %}

@@ -1,0 +1,11 @@
+{# Create a section
+  - class {String} - (Optional) Any classes to be added to the section.
+#}
+
+{% macro create_button(doc, type, class) %}
+<button class="button button__{{type}} f-body {% if class %}{{class}}{% endif %}" role="button">
+
+  {{ caller() }}
+
+</button>
+{% endmacro %}

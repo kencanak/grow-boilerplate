@@ -1,0 +1,70 @@
+{% set podspec = g.doc('/podspec.yaml') %}
+
+{% macro image(doc, src, isLazy, srcSet, alt, class, placeholder, localizable) %}
+
+  {% set prefix = "" %}
+  {% set classnames = "" %}
+  {% if isLazy %}
+    {% set prefix = "data-" %}
+    {% set classnames = "lazy-image" %}
+  {% endif %}
+
+  {% if class %}
+    {% set classnames = classnames ~ " " ~ class %}
+  {% endif %}
+
+  {% set srcAbsolute = podspec.image_path ~ src %}
+  <img
+    {% if src %}
+      {{prefix}}src="{{g.static(srcAbsolute, locale=doc.locale).url.path}}"
+    {% endif %}
+    {% if srcSet %}
+      {{prefix}}srcset="{{generateSrcSet(doc, srcSet, localizable)}}"
+    {% endif %}
+    {% if placeholder %}
+      {% if isLazy %}
+        src="{{placeholder}}"
+      {% endif %}
+    {% endif %}
+    class="{{classnames}}"
+    alt="{{_(alt)}}" />
+{% endmacro %}
+
+
+
+{% macro picture(doc, srcMobile, srcDesktop, isLazy, srcSetMobile, srcSetDesktop, placeholder, alt, class, localizable) %}
+
+  <picture {% if class %}class="{{class}}"{% endif %}>
+
+    {{ createSource(doc, "(max-width: 600px)", isLazy, srcMobile, srcSetMobile, localizable) }}
+    {{ createSource(doc, "(min-width: 600px)", isLazy, srcDesktop, srcSetDesktop, localizable) }}
+    {{ image(doc, srcDesktop, isLazy, null, alt, '', placeholder, localizable) }}
+
+  </picture>
+
+{% endmacro %}
+
+
+{% macro createSource(doc, mediaQuery, isLazy, src, srcSet, localizable) %}
+  {% set prefix = "" %}
+  {% if isLazy %}
+    {% set prefix = "data-" %}
+  {% endif %}
+  <source {% if isLazy %}class="lazy-image"{% endif %} media="{{ mediaQuery }}"
+    {% if srcSet %}
+      {{prefix}}srcset="{{generateSrcSet(doc, srcSet, localizable)}}"
+    {% endif %}
+    />
+
+{% endmacro %}
+
+
+{% macro generateSrcSet(doc, srcSet, localizable) %}
+  {% for key in srcSet %}
+
+    {% set srcAbsolute = podspec.image_path ~ srcSet[key] %}
+
+    {{g.static(srcAbsolute, locale=doc.locale).url.path}} {{key}}
+    {% if not loop.last %},{% endif %}
+  {% endfor %}
+{% endmacro %}

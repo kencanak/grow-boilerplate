@@ -1,0 +1,25 @@
+@import '../common/mixins';
+@import '../common/config';
+@import '../common/custom-media';
+
+.buttons-wrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  .button {
+    margin-right: rem(8);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @media #{$mq-tablet} {
+    flex-direction: row;
+  }
+
+  @media #{$mq-desktop} {
+    flex-direction: row;
+  }
+}

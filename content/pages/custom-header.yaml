@@ -1,0 +1,9 @@
+$view: /views/pages/custom-header.html
+$title: Custom Header Page
+$path: /{root}/custom-header/
+$order: 3
+description: A basic Grow boilerplate
+
+composite_files:
+- home
+

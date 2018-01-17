@@ -1,0 +1,178 @@
+// Used to determine when to reset visibility after animate out
+$full-anim-out-duration: .4;
+
+// Can be adjusted to proportionally change the animation sequence duration
+$base-anim-duration: .2;
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: index($z-elements, lightbox);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 0;
+
+  overflow: hidden;
+
+  transition: height 0s #{$full-anim-out-duration}s linear,
+              z-index 0s #{$full-anim-out-duration}s linear;
+
+
+  &__close {
+    position: absolute;
+
+    top: rem(46);
+    right: rem(46);
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+
+    cursor: pointer;
+
+    svg {
+      width: rem(21);
+      height: rem(21);
+
+      pointer-events: none;
+    }
+
+    use {
+      color: $color-primary;
+
+      transition: all $transition-duration-fast $timing-function-ease-out-cubic;
+    }
+
+    &:hover {
+      use {
+        color: $color-primary-light;
+      }
+    }
+
+    &:focus {
+      background-color: transparent;
+
+      use {
+        color: $color-primary-dark;
+      }
+    }
+  }
+
+  &__content {
+    @extend %section-padding;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding-top: rem(100);
+    padding-bottom: rem(100);
+
+    background-color: $color-white;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    opacity: 0;
+
+    box-shadow: rgba(0, 0, 0, .5) 0 rem(2) rem(4);
+
+    transition: transform #{$base-anim-duration * 1.4}s $timing-function-ease-in-out-cubic,
+                opacity #{$base-anim-duration * .7}s $timing-function-ease-in-out-cubic;
+
+    &__body {
+      overflow: hidden;
+    }
+
+    @media #{$mq-tablet} {
+      display: block;
+      width: $content-max-width-tablet - ($wrapper-padding-h-tablet * 2);
+      height: auto;
+
+      // margin: 0 auto;
+
+      border-radius: rem(20);
+    }
+
+    @media #{$mq-desktop} {
+      display: block;
+      width: $content-max-width-desktop - ($wrapper-padding-h-desktop * 2);
+
+      height: auto;
+
+      // margin: 0 auto;
+
+      border-radius: rem(20);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+
+    // Scaled up so that safari can move it backwards in Z without seeing the sides, see transform below
+    top: -50%;
+    left: -50%;
+
+    width: 200%;
+    height: 200%;
+
+    cursor: pointer;
+
+    background: rgba(34, 41, 45, .75);
+
+    opacity: 0;
+
+    // For safari we need to place this behind the lightbox__content to prevent z-fighting
+    transform: translate3d(0, 0, -100px);
+
+    transition: opacity #{$base-anim-duration * 1.2}s $timing-function-ease-in-out-cubic;
+  }
+
+  &__focus-trap {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+  }
+
+  &.remove-transitions {
+    transition: none;
+
+    .lightbox__content {
+      transition: none;
+    }
+  }
+
+  &.activated {
+    height: 100%;
+
+    transition: height 0s 0s linear;
+
+    .lightbox__overlay {
+      opacity: 1;
+    }
+
+    .lightbox__content {
+      opacity: 1;
+
+      transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+
+      margin: 0 auto;
+    }
+  }
+}

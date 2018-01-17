@@ -1,0 +1,27 @@
+.button {
+  display: inline-flex;
+
+  align-items: center;
+  align-self: flex-start;
+
+  height: rem(40);
+
+  padding-right: rem(16);
+  padding-left: rem(16);
+
+  box-sizing: border-box;
+
+  border-radius: rem(2);
+
+  white-space: nowrap;
+
+  color: $color-white;
+
+  background-color: $color-primary;
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: $color-primary-light;
+  }
+}

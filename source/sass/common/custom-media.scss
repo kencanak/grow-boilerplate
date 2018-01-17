@@ -1,0 +1,11 @@
+/*
+  * breakpoints
+  */
+
+$width-threshold: 600;
+$width-threshold-tablet: 1024;
+$width-threshold-desktop: 1440;
+
+$mq-mobile: customMedia(0, $width-threshold);
+$mq-tablet: customMedia($width-threshold + 1, $width-threshold-tablet);
+$mq-desktop: customMedia($width-threshold-tablet + 1, null);

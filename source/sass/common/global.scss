@@ -1,0 +1,61 @@
+html {
+  font-size: rem($base-font-size);
+}
+
+html,
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding: 0;
+
+  margin: 0;
+
+  font-family: $font-family;
+
+  font-weight: $f-weight-regular;
+
+  font-size: rem($base-font-size);
+
+  color: $color-text;
+
+  background: $color-white;
+
+  &.scroll-locked {
+    overflow: hidden;
+  }
+}
+
+.icon {
+  margin-left: rem(8);
+}
+
+button {
+  padding: 0;
+
+  border: 0;
+
+  font-size: $f-body;
+
+  font-family: $font-family;
+
+  cursor: pointer;
+
+  transition: all $transition-duration-fast $timing-function-ease-out-cubic;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: rem(1);
+
+  margin-top: rem(24);
+  margin-bottom: rem(24);
+
+  background-color: $color-light-grey;
+}

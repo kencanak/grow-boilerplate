@@ -1,0 +1,46 @@
+{% set home = home | default(g.doc('/content/pages/home.yaml', locale=doc.locale)) %}
+
+{% set header = '' %}
+{% if home.header is defined %}
+  {% set header = home.header %}
+{% endif %}
+
+{# by default menu items is derived from pages #}
+{# unless we define nav_items under header object in the individual page yaml file, #}
+{# it will overwrite the default nav_items object #}
+
+{% set nav_items = g.docs('pages', locale=doc.locale) %}
+{% if header.nav_items is defined %}
+  {% set nav_items = header.nav_items %}
+{% endif %}
+<header class="header">
+  <nav class="header__inner" role="navigation">
+    <div class="header__inner-border"></div>
+    <a id="a11y-skip-to-main-content" href="#maincontent">{{_('Skip to main content')}}</a>
+
+    <div class="header__primary">
+
+      <ul class="primary__list">
+
+        {% for item in nav_items %}
+          {% if not item.exclude_from_nav %}
+            {% set nav_link = item.url.path|replace(podspec.locale_path_placeholder, locale_path) %}
+            {% if item.nav_link %}
+              {% set nav_link = item.nav_link %}
+            {% endif %}
+
+            <li class="primary__list-item {{'primary__list-item--current' if doc == item or doc.parent == item }}">
+              <a class="gtm-track" target="_top" href="{{item.url.path|replace(podspec.locale_path_placeholder, locale_path)}}" data-tracking-category="Universal Navigation" data-tracking-action="Header - {{item.nav_title}}">
+                <span>{{_(item.title)}}</span>
+              </a>
+
+              <div class="primary__list-item__underline"></div>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+      </ul>
+
+    </div>
+  </nav>
+</header>

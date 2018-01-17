@@ -1,0 +1,43 @@
+{% extends "/views/base.html" %}
+
+{% import "/views/macros/_section/_section.html" as section_macro %}
+{% import "/views/macros/_button/_button.html" as button_macro %}
+
+{# ------ HEADER ------ #}
+{% block header %}
+  {% include "/views/partials/_header/_header.html" %}
+{% endblock %}
+
+{% block main %}
+  {% call section_macro.create_section(doc, 'mumbo', 'jumbo') %}
+    <h1>{{doc.title|safe}}</h1>
+    <div class="buttons-wrapper">
+      {% call button_macro.create_button(doc, 'random', 'stuff') %}
+        I am a button
+      {% endcall %}
+
+      {% call button_macro.create_button(doc, 'lightbox', '') %}
+        Show Lightbox
+      {% endcall %}
+    </div>
+
+    <h1>
+      I am H1
+    </h1>
+    <h2>
+      I am H2
+    </h2>
+    <h3>
+      I am H3
+    </h3>
+    <p class="f-body">
+      I am body font
+    </p>
+    <p class="f-body2">
+      I am body font 2
+    </p>
+    <p class="f-footnote">
+      I am footnote
+    </p>
+  {% endcall %}
+{% endblock main %}

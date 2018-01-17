@@ -1,0 +1,7 @@
+{
+  "name": "grow-boilerplate",
+  "private": true,
+  "devDependencies": {
+    "waypoints": "latest"
+  }
+}
