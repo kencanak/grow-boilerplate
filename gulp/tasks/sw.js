@@ -10,67 +10,21 @@ const fs = require('fs');
 
 const config = require('../config');
 
-const getDynamicDependencies = (url) => {
+const getDynamicDependencies = () => {
   // common dependencies
   let dependencies = [
     'content/pages/_blueprint.yaml',
-    'content/pages/articles/_blueprint.yaml',
     'views/base.html',
-    'views/common/back-to-top-button/back-to-top-button.html',
-    'views/partials/_carousel/_carousel.html',
-    'views/partials/_copy-lockup/_copy-lockup.html',
-    'views/partials/_diagram/_diagram.html',
-    'views/partials/_hero/_hero.html',
-    'views/partials/_imageblock/_imageblock.html',
-    'views/partials/_intro-paragraph/_intro-paragraph.html',
-    'views/partials/_listitem/_listitem.html',
-    'views/partials/_quote/_quote.html',
-    'views/partials/_share/_share.html',
-    'views/partials/_video/_video.html',
+    'views/common/back-to-top/back-to-top.html',
     'views/macros/_section/_section.html',
     'views/macros/_image.html',
-    'views/templates/article-content/article-content.html',
-    'dist/css/main.min.css'
+    'views/macros/_button/_button.html',
+    'dist/css/main.min.css',
+    'dist/css/home.min.css',
+    'content/pages/custom-header.yaml',
+    'content/pages/home.yaml',
+    'content/pages/random-page.yaml'
   ];
-
-  dependencies.push('content/pages/articles/article-summer-dandruff.yaml');
-
-  let pageSlug = null;
-
-  if (url.indexOf('articles') > 0) {
-    pageSlug = url.split('/')[2];
-    dependencies.push('dist/js/article.min.js');
-    dependencies.push('dist/css/article.min.css');
-  } else if (url.indexOf('article-list') > 0) {
-    pageSlug = url.split('/')[2];
-
-    dependencies.push(`content/pages/${pageSlug}.yaml`);
-
-
-    dependencies.push('dist/js/article-list.min.js');
-    dependencies.push('dist/css/article-list.min.css');
-  } else {
-    dependencies.push('dist/js/article-list.min.js');
-    dependencies.push('dist/css/article-list.min.css');
-    dependencies.push('content/pages/dandruff.yaml');
-  }
-
-  return dependencies;
-};
-
-const generateListOfDependencies = () => {
-  let dependencies = {};
-
-  dependencies[`${config.ROOT}/index.html`] = getDynamicDependencies('/index.html');
-  dependencies[`${config.ROOT}/articles/article-summer-dandruff/index.html`] = getDynamicDependencies('/articles/article-summer-dandruff/');
-  dependencies[`${config.ROOT}/articles/article-summer-hair-care/index.html`] = getDynamicDependencies('/articles/article-summer-hair-care/');
-  dependencies[`${config.ROOT}/articles/article-sofia-vergara/index.html`] = getDynamicDependencies('/articles/article-sofia-vergara/');
-  dependencies[`${config.ROOT}/articles/article-scalp-psoriasis/index.html`] = getDynamicDependencies('/articles/article-scalp-psoriasis/');
-  dependencies[`${config.ROOT}/articles/article-head-and-shoulder-supreme/index.html`] = getDynamicDependencies('/articles/article-head-and-shoulder-supreme/');
-  dependencies[`${config.ROOT}/dandruff/index.html`] = getDynamicDependencies('/dandruff/');
-  dependencies[`${config.ROOT}/hair-care/index.html`] = getDynamicDependencies('/hair-care/');
-  dependencies[`${config.ROOT}/itchy-dry-sensitive/index.html`] = getDynamicDependencies('/itchy-dry-sensitive/');
-  dependencies[`${config.ROOT}/severe-scalp-conditions/index.html`] = getDynamicDependencies('/severe-scalp-conditions/');
 
   return dependencies;
 };
@@ -101,7 +55,7 @@ gulp.task('generate-service-worker', function(callback) {
       'dist/js/*.js',
     ],
 
-    dynamicUrlToDependencies: generateListOfDependencies(),
+    dynamicUrlToDependencies: getDynamicDependencies(),
 
     stripPrefixMulti: {
       'source/images': config.ASSETS_ROOT_DIR + '/images',
